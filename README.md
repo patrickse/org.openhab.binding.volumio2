@@ -6,6 +6,8 @@ layout: documentation
 
 # Volumio2 Binding
 
+[![Build Status](https://travis-ci.org/patrickse/org.openhab.binding.volumio2.svg?branch=master)](https://travis-ci.org/patrickse/org.openhab.binding.volumio2)
+
 This binding integrates the [Volumio - Audiophile Music Player Project](https://volumio.org). The binding
 is inspired by the [Sonos-Binding](https://github.com/eclipse/smarthome/tree/master/extensions/binding/org.eclipse.smarthome.binding.sonos) from the [Eclipse Smarthome Project](http://www.eclipse.org/smarthome/)
 
