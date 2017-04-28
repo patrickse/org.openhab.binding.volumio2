@@ -21,10 +21,12 @@
 
 	<properties>
 		<report.fail.on.error>false</report.fail.on.error>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 	</properties>
 
 	<build>
 		<testSourceDirectory>src/test</testSourceDirectory>
+        <finalName>${finalName}</finalName>
 
 		<plugins>
 			<plugin>
