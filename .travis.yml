@@ -7,6 +7,8 @@ before_install:
 - shopt -s extglob dotglob
 - mv !(openhab2-addons-master) openhab2-addons-master/addons/binding/org.openhab.binding.volumio2
 - cd openhab2-addons-master/addons/binding/org.openhab.binding.volumio2
+before_deploy:
+- mvn package -Dmaven.test.skip
 deploy:
   provider: releases
   api_key:
