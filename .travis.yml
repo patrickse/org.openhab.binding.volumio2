@@ -20,4 +20,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: patrickse/org.openhab.binding.volumio2
-    branch: master
