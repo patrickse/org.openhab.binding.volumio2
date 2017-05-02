@@ -19,4 +19,5 @@ deploy:
   file: target/org.openhab.binding.volumio2-2.1.0-SNAPSHOT.jar
   skip_cleanup: true
   on:
-    repo: patrickse/org.openhab.binding.volumio2
+    tags: true
+#    repo: patrickse/org.openhab.binding.volumio2
