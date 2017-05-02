@@ -49,7 +49,7 @@ The devices support the following channels:
 | player          | Player                 |              |                  |              |   |
 | trackType       | String                 |              |                  |              |   |
 | playRadioStream | String                 |              |                  |              |   |
-|-----------------|------------------------|--------------|----------------- |------------- |---|
+
 
 
 ## Audio Support
