@@ -4,7 +4,6 @@ cache:
   directories:
   - $HOME/.m2
 before_install:
-- gem update --system 1.8.30
 - wget https://github.com/openhab/openhab2-addons/archive/master.tar.gz
 - tar xzfv master.tar.gz
 - mkdir openhab2-addons-master/addons/binding/org.openhab.binding.volumio2
