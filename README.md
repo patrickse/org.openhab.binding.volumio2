@@ -49,6 +49,8 @@ The devices support the following channels:
 | player          | Player                 |              |                  |              |   |
 | trackType       | String                 |              |                  |              |   |
 | playRadioStream | String                 |              |                  |              |   |
+| playPlaylist    | String                 |              |                  |              |   |
+| clearQueue      | Switch                 |              |                  |              |   |
 
 
 

@@ -31,6 +31,8 @@ public class Volumio2BindingConstants {
     public final static String CHANNEL_COVER_ART = "albumArt";
     public final static String CHANNEL_TRACK_TYPE = "trackType";
     public final static String CHANNEL_PLAY_RADIO_STREAM = "playRadioStream";
+    public final static String CHANNEL_PLAY_PLAYLIST = "playPlaylist";
+    public final static String CHANNEL_CLEAR_QUEUE = "clearQueue";
 
     // Discovery Properties
 

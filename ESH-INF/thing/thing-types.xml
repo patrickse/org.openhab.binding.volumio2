@@ -18,6 +18,8 @@
 <!--             <channel id="albumArt" typeId="albumArt"/> -->
             <channel id="trackType" typeId="trackType"/>
             <channel id="playRadioStream" typeId="playRadioStream"/>
+            <channel id="playPlaylist" typeId="playPlaylist"/>
+            <channel id="clearQueue" typeId="clearQueue"/>
         </channels>
         
         <config-description>
@@ -83,6 +85,18 @@
         <item-type>String</item-type>
         <label>Play radio stream</label>
         <description>Play the given radio stream</description>
+    </channel-type>
+    
+    <channel-type id="playPlaylist" advanced="true">
+        <item-type>String</item-type>
+        <label>Play playlist</label>
+        <description>Playback a playlist identifed by its name</description>
+    </channel-type>
+    
+    <channel-type id="clearQueue" advanced="false">
+        <item-type>Switch</item-type>
+        <label>Clear queue</label>
+        <description>Clear the current queue</description>
     </channel-type>
 
 </thing:thing-descriptions>

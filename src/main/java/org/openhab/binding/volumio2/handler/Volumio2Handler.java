@@ -12,6 +12,7 @@ import static org.openhab.binding.volumio2.Volumio2BindingConstants.*;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.library.types.NextPreviousType;
+import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.library.types.PlayPauseType;
 import org.eclipse.smarthome.core.library.types.RewindFastforwardType;
@@ -104,6 +105,20 @@ public class Volumio2Handler extends BaseThingHandler {
                     }
                     break;
 
+                case CHANNEL_PLAY_PLAYLIST:
+                    if (command instanceof StringType) {
+                        final String playlistName = ((StringType) command).toFullString();
+                        volumio.playPlaylist(playlistName);
+                    }
+                    break;
+                case CHANNEL_CLEAR_QUEUE:
+                    if (command instanceof OnOffType) {
+                        if (command == OnOffType.ON) {
+                            volumio.clearQueue();
+                            // Make it feel like a toggle button ...
+                            updateState(channelUID, OnOffType.OFF);
+                        }
+                    }
                 case "REFRESH":
                     log.debug("Called Refresh");
                     volumio.getState();
