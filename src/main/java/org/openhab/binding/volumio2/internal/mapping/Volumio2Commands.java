@@ -56,6 +56,8 @@ public class Volumio2Commands {
 
     public static final String ADD_PLAY = "addPlay";
 
+    public static final String CLEAR_QUEUE = "clearQueue";
+
     /* ... */
     public static final String SHUTDOWN = "shutdown";
 

@@ -166,6 +166,10 @@ public class Volumio2Service {
         }
     }
 
+    public void clearQueue() {
+        socket.emit(Volumio2Commands.CLEAR_QUEUE);
+    }
+
     public void playFavorites(String favoriteName) {
         JSONObject item = new JSONObject();
 
