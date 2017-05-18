@@ -170,6 +170,31 @@ public class Volumio2Service {
         socket.emit(Volumio2Commands.CLEAR_QUEUE);
     }
 
+    public void setRandom(boolean val) {
+        JSONObject item = new JSONObject();
+
+        try {
+            item.put("value", val);
+
+            socket.emit(Volumio2Commands.RANDOM, item);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setRepeat(boolean val) {
+        JSONObject item = new JSONObject();
+
+        try {
+            item.put("value", val);
+
+            socket.emit(Volumio2Commands.REPEAT, item);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void playFavorites(String favoriteName) {
         JSONObject item = new JSONObject();
 

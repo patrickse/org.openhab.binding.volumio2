@@ -27,9 +27,9 @@ public class Volumio2Commands {
 
     public static final String SEEK = "seek";
 
-    public static final String RANDOM = "random";
+    public static final String RANDOM = "setRandom";
 
-    public static final String REPEAT = "repeat";
+    public static final String REPEAT = "setRepeat";
 
     /* Search */
 

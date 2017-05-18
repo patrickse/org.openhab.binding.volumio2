@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.library.types.PlayPauseType;
 import org.eclipse.smarthome.core.library.types.RawType;
@@ -44,6 +45,12 @@ public class Volumio2Data {
     private byte[] coverArt;
     private String coverArtUrl;
     private boolean coverArtDirty;
+
+    private boolean repeat = false;
+    private boolean repeatDirty;
+
+    private boolean random = false;
+    private boolean randomDirty;
 
     public void update(JSONObject jsonObject) throws JSONException {
 
@@ -88,6 +95,18 @@ public class Volumio2Data {
             setCoverArt(jsonObject.getString(CHANNEL_COVER_ART));
         } else {
             setCoverArt(null);
+        }
+
+        if (jsonObject.has(CHANNEL_PLAY_RANDOM)) {
+            setRandom(jsonObject.getBoolean(CHANNEL_PLAY_RANDOM));
+        } else {
+            setRandom(false);
+        }
+
+        if (jsonObject.has(CHANNEL_PLAY_REPEAT)) {
+            setRepeat(jsonObject.getBoolean(CHANNEL_PLAY_REPEAT));
+        } else {
+            setRepeat(false);
         }
 
     }
@@ -235,6 +254,32 @@ public class Volumio2Data {
 
     }
 
+    public OnOffType getRandom() {
+        return (random == true) ? OnOffType.ON : OnOffType.OFF;
+    }
+
+    public void setRandom(boolean val) {
+        if (val != this.random) {
+            this.random = val;
+            this.randomDirty = true;
+        } else {
+            this.randomDirty = false;
+        }
+    }
+
+    public OnOffType getRepeat() {
+        return (repeat == true) ? OnOffType.ON : OnOffType.OFF;
+    }
+
+    public void setRepeat(boolean val) {
+        if (val != this.repeat) {
+            this.repeat = val;
+            this.repeatDirty = true;
+        } else {
+            this.repeatDirty = false;
+        }
+    }
+
     public StringType getPosition() {
         return new StringType(position);
     }
@@ -269,6 +314,14 @@ public class Volumio2Data {
 
     public boolean isCoverArtDirty() {
         return coverArtDirty;
+    }
+
+    public boolean isRandomDirty() {
+        return randomDirty;
+    }
+
+    public boolean isRepeatDirty() {
+        return repeatDirty;
     }
 
 }

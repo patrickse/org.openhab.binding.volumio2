@@ -33,6 +33,8 @@ public class Volumio2BindingConstants {
     public final static String CHANNEL_PLAY_RADIO_STREAM = "playRadioStream";
     public final static String CHANNEL_PLAY_PLAYLIST = "playPlaylist";
     public final static String CHANNEL_CLEAR_QUEUE = "clearQueue";
+    public final static String CHANNEL_PLAY_RANDOM = "random";
+    public final static String CHANNEL_PLAY_REPEAT = "repeat";
 
     // Discovery Properties
 

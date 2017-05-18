@@ -20,6 +20,8 @@
             <channel id="playRadioStream" typeId="playRadioStream"/>
             <channel id="playPlaylist" typeId="playPlaylist"/>
             <channel id="clearQueue" typeId="clearQueue"/>
+            <channel id="random" typeId="playRandom"/>
+            <channel id="repeat" typeId="playRepeat"/>
         </channels>
         
         <config-description>
@@ -93,10 +95,23 @@
         <description>Playback a playlist identifed by its name</description>
     </channel-type>
     
-    <channel-type id="clearQueue" advanced="false">
+    <channel-type id="clearQueue" advanced="true">
         <item-type>Switch</item-type>
         <label>Clear queue</label>
         <description>Clear the current queue</description>
     </channel-type>
+
+    <channel-type id="playRandom" advanced="true">
+        <item-type>Switch</item-type>
+        <label>Random</label>
+        <description>Activate random mode</description>
+    </channel-type>
+
+    <channel-type id="playRepeat" advanced="true">
+        <item-type>Switch</item-type>
+        <label>Repeat</label>
+        <description>Activate repeat mode</description>
+    </channel-type>
+
 
 </thing:thing-descriptions>

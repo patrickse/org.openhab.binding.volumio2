@@ -119,6 +119,19 @@ public class Volumio2Handler extends BaseThingHandler {
                             updateState(channelUID, OnOffType.OFF);
                         }
                     }
+                    break;
+                case CHANNEL_PLAY_RANDOM:
+                    if (command instanceof OnOffType) {
+                        boolean enableRandom = (command == OnOffType.ON) ? true : false;
+                        volumio.setRandom(enableRandom);
+                    }
+                    break;
+                case CHANNEL_PLAY_REPEAT:
+                    if (command instanceof OnOffType) {
+                        boolean enableRepeat = (command == OnOffType.ON) ? true : false;
+                        volumio.setRepeat(enableRepeat);
+                    }
+                    break;
                 case "REFRESH":
                     log.debug("Called Refresh");
                     volumio.getState();
@@ -346,6 +359,14 @@ public class Volumio2Handler extends BaseThingHandler {
 
                     if (isLinked(CHANNEL_TRACK_TYPE) && state.isTrackTypeDirty()) {
                         updateState(CHANNEL_TRACK_TYPE, state.getTrackType());
+                    }
+
+                    if (isLinked(CHANNEL_PLAY_RANDOM) && state.isRandomDirty()) {
+                        updateState(CHANNEL_PLAY_RANDOM, state.getRandom());
+                    }
+
+                    if (isLinked(CHANNEL_PLAY_REPEAT) && state.isRepeatDirty()) {
+                        updateState(CHANNEL_PLAY_REPEAT, state.getRepeat());
                     }
 
                     /**
