@@ -335,7 +335,9 @@ public class Volumio2Handler extends BaseThingHandler {
 
                 try {
 
-                    state.update((JSONObject) data[0]);
+                    JSONObject jsonObject = (JSONObject) data[0];
+                    log.debug(jsonObject.toString());
+                    state.update(jsonObject);
 
                     if (isLinked(CHANNEL_TITLE) && state.isTitleDirty()) {
                         updateState(CHANNEL_TITLE, state.getTitle());
@@ -376,7 +378,8 @@ public class Volumio2Handler extends BaseThingHandler {
                      */
 
                 } catch (JSONException e) {
-                    log.error("Could not refresh channel: {}", e);
+                    log.error("Could not refresh channel", e);
+
                 }
             }
         };
