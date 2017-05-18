@@ -51,6 +51,8 @@ The devices support the following channels:
 | playRadioStream | String                 |              |                  |              |   |
 | playPlaylist    | String                 |              |                  |              |   |
 | clearQueue      | Switch                 |              |                  |              |   |
+| random          | Switch                 |              |                  |              |   |
+| repeat          | Switch                 |              |                  |              |   |
 
 
 
