@@ -97,13 +97,13 @@ public class Volumio2Data {
             setCoverArt(null);
         }
 
-        if (jsonObject.has(CHANNEL_PLAY_RANDOM)) {
+        if (jsonObject.has(CHANNEL_PLAY_RANDOM) && !jsonObject.isNull(CHANNEL_PLAY_RANDOM)) {
             setRandom(jsonObject.getBoolean(CHANNEL_PLAY_RANDOM));
         } else {
             setRandom(false);
         }
 
-        if (jsonObject.has(CHANNEL_PLAY_REPEAT)) {
+        if (jsonObject.has(CHANNEL_PLAY_REPEAT) && !jsonObject.isNull(CHANNEL_PLAY_REPEAT)) {
             setRepeat(jsonObject.getBoolean(CHANNEL_PLAY_REPEAT));
         } else {
             setRepeat(false);
