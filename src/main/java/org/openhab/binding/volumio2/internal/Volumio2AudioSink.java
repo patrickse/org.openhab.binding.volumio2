@@ -74,6 +74,11 @@ public class Volumio2AudioSink implements AudioSink {
     }
 
     @Override
+    public Set<Class<? extends AudioStream>> getSupportedStreams() {
+        return null;
+    }
+
+    @Override
     public PercentType getVolume() throws IOException {
         return new PercentType(100);
     }

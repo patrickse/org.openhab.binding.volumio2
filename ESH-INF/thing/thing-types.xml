@@ -20,6 +20,7 @@
             <channel id="playRadioStream" typeId="playRadioStream"/>
             <channel id="playPlaylist" typeId="playPlaylist"/>
             <channel id="clearQueue" typeId="clearQueue"/>
+            <channel id="playURI" typeId="playURI"/>
             <channel id="random" typeId="playRandom"/>
             <channel id="repeat" typeId="playRepeat"/>
         </channels>
@@ -113,5 +114,10 @@
         <description>Activate repeat mode</description>
     </channel-type>
 
+    <channel-type id="playURI" advanced="true">
+        <item-type>String</item-type>
+        <label>Play URI</label>
+        <description>Play the stream at given uri</description>
+    </channel-type>
 
 </thing:thing-descriptions>
