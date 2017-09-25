@@ -112,6 +112,13 @@ public class Volumio2Handler extends BaseThingHandler {
                     }
                     break;
 
+                case CHANNEL_PLAY_FILE:
+                    if (command instanceof StringType) {
+                        final String uri = ((StringType) command).toFullString();
+                        volumio.replacePlay(uri, "", Volumio2ServiceTypes.MPD);
+                    }
+                    break;
+
                 case CHANNEL_PLAY_PLAYLIST:
                     if (command instanceof StringType) {
                         final String playlistName = ((StringType) command).toFullString();

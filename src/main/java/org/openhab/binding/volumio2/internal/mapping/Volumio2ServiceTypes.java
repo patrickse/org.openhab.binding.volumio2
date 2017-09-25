@@ -6,4 +6,6 @@ public class Volumio2ServiceTypes {
 
     public static final String SPOTIFY = "spotify";
 
+    public static final String MPD = "mpd";
+
 }

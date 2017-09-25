@@ -21,6 +21,7 @@
             <channel id="playPlaylist" typeId="playPlaylist"/>
             <channel id="clearQueue" typeId="clearQueue"/>
             <channel id="playURI" typeId="playURI"/>
+            <channel id="playFile" typeId="playFile"/>
             <channel id="random" typeId="playRandom"/>
             <channel id="repeat" typeId="playRepeat"/>
         </channels>
@@ -118,6 +119,12 @@
         <item-type>String</item-type>
         <label>Play URI</label>
         <description>Play the stream at given uri</description>
+    </channel-type>
+    
+    <channel-type id="playFile" advanced="true">
+        <item-type>String</item-type>
+        <label>Play file</label>
+        <description>Play a file, located on your Volumio2 device at the given absolute path, e.g. "mnt/INTERNAL/song.mp3"</description>
     </channel-type>
 
 </thing:thing-descriptions>
