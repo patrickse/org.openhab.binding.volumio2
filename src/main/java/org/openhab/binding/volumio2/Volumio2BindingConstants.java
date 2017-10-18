@@ -47,4 +47,8 @@ public class Volumio2BindingConstants {
     // Config
 
     public final static String CONFIG_PROPERTY_HOSTNAME = "hostname";
+    public final static String CONFIG_PROPERTY_PORT = "port";
+    public final static String CONFIG_PROPERTY_PROTOCOL = "protocol";
+    public final static String CONFIG_PROPERTY_TIMEOUT = "timeout";
+
 }

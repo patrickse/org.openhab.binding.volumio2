@@ -9,6 +9,7 @@ package org.openhab.binding.volumio2.handler;
 
 import static org.openhab.binding.volumio2.Volumio2BindingConstants.*;
 
+import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.library.types.NextPreviousType;
@@ -49,8 +50,6 @@ public class Volumio2Handler extends BaseThingHandler {
     private static Logger log = LoggerFactory.getLogger(Volumio2Handler.class);
     private Volumio2Service volumio;
     private Volumio2Data state = new Volumio2Data();
-
-    private String hostname;
 
     public Volumio2Service getVolumio() {
         return volumio;
@@ -251,18 +250,26 @@ public class Volumio2Handler extends BaseThingHandler {
     @Override
     public void initialize() {
 
-        hostname = (String) getThing().getConfiguration().get(CONFIG_PROPERTY_HOSTNAME);
+        String hostname = (String) getThing().getConfiguration().get(CONFIG_PROPERTY_HOSTNAME);
+        int port = ((BigDecimal) getThing().getConfiguration().get(CONFIG_PROPERTY_PORT)).intValueExact();
+        String protocol = (String) getThing().getConfiguration().get(CONFIG_PROPERTY_PROTOCOL);
+        int timeout = ((BigDecimal) getThing().getConfiguration().get(CONFIG_PROPERTY_TIMEOUT)).intValueExact();
 
         if (hostname == null) {
 
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
                     "Configuration incomplete, missing hostname");
 
+        } else if (protocol == null) {
+
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
+                    "Configuration incomplete, missing protocol");
+
         } else {
 
-            log.debug("Trying to connect to Volumio2 on {}", hostname);
+            log.debug("Trying to connect to Volumio2 on {}://{}:{}", protocol, hostname, port);
             try {
-                volumio = new Volumio2Service(hostname);
+                volumio = new Volumio2Service(protocol, hostname, port, timeout);
 
                 clearChannels();
                 bindDefaultListener();

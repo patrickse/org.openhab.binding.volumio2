@@ -1,7 +1,9 @@
 package org.openhab.binding.volumio2.internal;
 
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.json.JSONException;
@@ -19,27 +21,30 @@ public class Volumio2Service {
     private static final Logger log = LoggerFactory.getLogger(Volumio2Service.class);
 
     private Socket socket;
-    private String hostname;
     private boolean connected;
 
-    public Volumio2Service(String hostname) throws URISyntaxException {
+    public Volumio2Service(String protocol, String hostname, int port, int timeout)
+            throws URISyntaxException, UnknownHostException {
 
-        this.hostname = hostname;
+        String uriString = String.format("%s://%s:%d", protocol, hostname, port);
 
-        URI destUri = new URI("http://" + hostname);
+        URI destUri = new URI(uriString);
 
         IO.Options opts = new IO.Options();
         opts.reconnection = true;
         opts.reconnectionDelay = 1000 * 30;
         opts.reconnectionDelayMax = 1000 * 60;
-        opts.timeout = 3000;
+        opts.timeout = timeout;
+
+        InetAddress ipaddress = InetAddress.getByName(hostname);
+        log.debug("Resolving {} to IP {}", hostname, ipaddress.getHostAddress());
 
         socket = IO.socket(destUri, opts);
 
-        bindDefaultEvents();
+        bindDefaultEvents(hostname);
     }
 
-    private void bindDefaultEvents() {
+    private void bindDefaultEvents(String hostname) {
 
         socket.on(Socket.EVENT_CONNECTING, new Emitter.Listener() {
 

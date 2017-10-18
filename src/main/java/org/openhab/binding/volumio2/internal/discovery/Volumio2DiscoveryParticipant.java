@@ -48,14 +48,20 @@ public class Volumio2DiscoveryParticipant implements MDNSDiscoveryParticipant {
         DiscoveryResult discoveryResult = null;
         ThingUID thingUID = null;
 
-        if (uuid != null) {
-            thingUID = getThingUID(service);
-        }
+        log.debug("Service Device: {}", service);
+
+        thingUID = getThingUID(service);
+
+        log.debug("Thing UID: {}", thingUID);
 
         if (thingUID != null) {
             properties.put("hostname", service.getServer());
+            properties.put("port", service.getPort());
+            properties.put("protocol", "http");
             discoveryResult = DiscoveryResultBuilder.create(thingUID).withProperties(properties).withLabel(volumioName)
                     .build();
+
+            log.debug("DiscoveryResult: {}", discoveryResult);
         }
 
         return discoveryResult;
