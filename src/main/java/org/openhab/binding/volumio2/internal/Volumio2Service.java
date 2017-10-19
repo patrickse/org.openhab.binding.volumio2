@@ -36,6 +36,7 @@ public class Volumio2Service {
         opts.reconnectionDelayMax = 1000 * 60;
         opts.timeout = timeout;
 
+        // Connection to mdns endpoint is only available after fetching ip.
         InetAddress ipaddress = InetAddress.getByName(hostname);
         log.debug("Resolving {} to IP {}", hostname, ipaddress.getHostAddress());
 
