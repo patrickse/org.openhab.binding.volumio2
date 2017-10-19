@@ -306,6 +306,15 @@ public class Volumio2Handler extends BaseThingHandler {
         }
     }
 
+    public void playURI(StringType url) {
+        log.debug("Play uri sound: {}", url.toFullString());
+        this.volumio.playURI(url.toFullString());
+    }
+
+    public void playNotificationSoundURI(StringType url) {
+        log.debug("Play notification sound: {}", url.toFullString());
+    }
+
     /** Listener **/
 
     /**
