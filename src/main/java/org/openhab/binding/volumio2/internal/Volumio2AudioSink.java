@@ -8,7 +8,6 @@ import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.smarthome.core.audio.AudioFormat;
 import org.eclipse.smarthome.core.audio.AudioHTTPServer;
-import org.eclipse.smarthome.core.audio.AudioSink;
 import org.eclipse.smarthome.core.audio.AudioStream;
 import org.eclipse.smarthome.core.audio.FixedLengthAudioStream;
 import org.eclipse.smarthome.core.audio.URLAudioStream;
@@ -19,7 +18,9 @@ import org.openhab.binding.volumio2.handler.Volumio2Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Volumio2AudioSink implements AudioSink {
+public class Volumio2AudioSink {
+    // implements AudioSink {
+    // }
 
     private static final Logger log = LoggerFactory.getLogger(Volumio2AudioSink.class);
 
