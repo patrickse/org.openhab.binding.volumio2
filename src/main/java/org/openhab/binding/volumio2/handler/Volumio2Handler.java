@@ -77,6 +77,9 @@ public class Volumio2Handler extends BaseThingHandler {
                 case CHANNEL_PLAYER:
                     handlePlaybackCommands(command);
                     break;
+                case CHANNEL_SHUTDOWN:
+                    handleShutdownCommand(command);
+                    break;
                 case CHANNEL_VOLUME:
                     handleVolumeCommand(command);
                     break;
@@ -157,6 +160,21 @@ public class Volumio2Handler extends BaseThingHandler {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, e.getMessage());
         }
 
+    }
+
+    private void handleShutdownCommand(Command command) {
+        if (command instanceof OnOffType) {
+            OnOffType onOffCommand = (OnOffType) command;
+            switch (onOffCommand) {
+                case ON:
+                    break;
+                case OFF:
+                    volumio.shutdown();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     /**
@@ -287,9 +305,7 @@ public class Volumio2Handler extends BaseThingHandler {
     @Override
     public void dispose() {
         if (volumio != null) {
-
             scheduler.schedule(new Runnable() {
-
                 @Override
                 public void run() {
                     if (volumio.isConnected()) {
@@ -395,6 +411,10 @@ public class Volumio2Handler extends BaseThingHandler {
 
                     if (isLinked(CHANNEL_PLAY_RANDOM) && state.isRandomDirty()) {
                         updateState(CHANNEL_PLAY_RANDOM, state.getRandom());
+                    }
+
+                    if (isLinked(CHANNEL_SHUTDOWN) && state.isShutdownDirty()) {
+                        updateState(CHANNEL_SHUTDOWN, state.getShutdown());
                     }
 
                     if (isLinked(CHANNEL_PLAY_REPEAT) && state.isRepeatDirty()) {

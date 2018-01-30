@@ -23,6 +23,7 @@
             <channel id="playURI" typeId="playURI"/>
             <channel id="playFile" typeId="playFile"/>
             <channel id="random" typeId="playRandom"/>
+            <channel id="shutdown" typeId="shutdown"/>
             <channel id="repeat" typeId="playRepeat"/>
         </channels>
         
@@ -127,6 +128,12 @@
         <item-type>Switch</item-type>
         <label>Random</label>
         <description>Activate random mode</description>
+    </channel-type>
+    
+    <channel-type id="shutdown" advanced="true">
+        <item-type>Switch</item-type>
+        <label>Shutdown</label>
+        <description>Shutdown Volumio</description>
     </channel-type>
 
     <channel-type id="playRepeat" advanced="true">
