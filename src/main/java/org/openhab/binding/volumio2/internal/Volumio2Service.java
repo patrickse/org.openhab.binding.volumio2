@@ -286,4 +286,19 @@ public class Volumio2Service {
         this.connected = status;
     }
 
+    public void sendSystemCommand(String string) {
+        log.warn("Jukebox Command: " + string);
+        switch (string) {
+            case Volumio2Commands.SHUTDOWN:
+                shutdown();
+                break;
+            case Volumio2Commands.REBOOT:
+                reboot();
+                break;
+            default:
+                break;
+        }
+
+    }
+
 }

@@ -77,9 +77,6 @@ public class Volumio2Handler extends BaseThingHandler {
                 case CHANNEL_PLAYER:
                     handlePlaybackCommands(command);
                     break;
-                case CHANNEL_SHUTDOWN:
-                    handleShutdownCommand(command);
-                    break;
                 case CHANNEL_VOLUME:
                     handleVolumeCommand(command);
                     break;
@@ -152,6 +149,9 @@ public class Volumio2Handler extends BaseThingHandler {
                     log.debug("Called Refresh");
                     volumio.getState();
                     break;
+                case CHANNEL_SYSTEMCOMMAND:
+                    sendSystemCommand(command);
+                    break;
                 default:
                     log.error("Unknown channel: {}", channelUID.getId());
             }
@@ -162,18 +162,12 @@ public class Volumio2Handler extends BaseThingHandler {
 
     }
 
-    private void handleShutdownCommand(Command command) {
-        if (command instanceof OnOffType) {
-            OnOffType onOffCommand = (OnOffType) command;
-            switch (onOffCommand) {
-                case ON:
-                    break;
-                case OFF:
-                    volumio.shutdown();
-                    break;
-                default:
-                    break;
-            }
+    private void sendSystemCommand(Command command) {
+        if (command instanceof StringType) {
+            volumio.sendSystemCommand(command.toString());
+            updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+        } else if (command.equals(RefreshType.REFRESH)) {
+            updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
         }
     }
 
@@ -411,10 +405,6 @@ public class Volumio2Handler extends BaseThingHandler {
 
                     if (isLinked(CHANNEL_PLAY_RANDOM) && state.isRandomDirty()) {
                         updateState(CHANNEL_PLAY_RANDOM, state.getRandom());
-                    }
-
-                    if (isLinked(CHANNEL_SHUTDOWN) && state.isShutdownDirty()) {
-                        updateState(CHANNEL_SHUTDOWN, state.getShutdown());
                     }
 
                     if (isLinked(CHANNEL_PLAY_REPEAT) && state.isRepeatDirty()) {

@@ -23,8 +23,8 @@
             <channel id="playURI" typeId="playURI"/>
             <channel id="playFile" typeId="playFile"/>
             <channel id="random" typeId="playRandom"/>
-            <channel id="shutdown" typeId="shutdown"/>
             <channel id="repeat" typeId="playRepeat"/>
+            <channel id="systemcommand" typeId="systemCommand" />
         </channels>
         
         <config-description>
@@ -56,6 +56,18 @@
         
     </thing-type>
 
+    <channel-type id="systemCommand" advanced="true">
+        <item-type>String</item-type>
+        <label>Send system command</label>
+        <description>Sends a system command to Volumio. This allows to shutdown/reboot Volumio</description>
+        <state>
+            <options>
+                <option value="shutdown">Shutdown</option>
+                <option value="reboot">Reboot</option>
+            </options>
+        </state>
+    </channel-type>
+    
     <channel-type id="title">
         <item-type>String</item-type>
         <label>Current Title</label>
@@ -130,12 +142,6 @@
         <description>Activate random mode</description>
     </channel-type>
     
-    <channel-type id="shutdown" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Shutdown</label>
-        <description>Shutdown Volumio</description>
-    </channel-type>
-
     <channel-type id="playRepeat" advanced="true">
         <item-type>Switch</item-type>
         <label>Repeat</label>

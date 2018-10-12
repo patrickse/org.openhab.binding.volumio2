@@ -52,9 +52,6 @@ public class Volumio2Data {
     private boolean random = false;
     private boolean randomDirty;
 
-    private boolean shutdown = false;
-    private boolean shutdownDirty;
-
     public void update(JSONObject jsonObject) throws JSONException {
 
         if (jsonObject.has(CHANNEL_TITLE)) {
@@ -104,12 +101,6 @@ public class Volumio2Data {
             setRandom(jsonObject.getBoolean(CHANNEL_PLAY_RANDOM));
         } else {
             setRandom(false);
-        }
-
-        if (jsonObject.has(CHANNEL_SHUTDOWN) && !jsonObject.isNull(CHANNEL_SHUTDOWN)) {
-            setShutdown(jsonObject.getBoolean(CHANNEL_SHUTDOWN));
-        } else {
-            setShutdown(true);
         }
 
         if (jsonObject.has(CHANNEL_PLAY_REPEAT) && !jsonObject.isNull(CHANNEL_PLAY_REPEAT)) {
@@ -267,25 +258,12 @@ public class Volumio2Data {
         return (random == true) ? OnOffType.ON : OnOffType.OFF;
     }
 
-    public OnOffType getShutdown() {
-        return (shutdown == true) ? OnOffType.ON : OnOffType.OFF;
-    }
-
     public void setRandom(boolean val) {
         if (val != this.random) {
             this.random = val;
             this.randomDirty = true;
         } else {
             this.randomDirty = false;
-        }
-    }
-
-    public void setShutdown(boolean val) {
-        if (val != this.shutdown) {
-            this.shutdown = val;
-            this.shutdownDirty = true;
-        } else {
-            this.shutdownDirty = false;
         }
     }
 
@@ -340,10 +318,6 @@ public class Volumio2Data {
 
     public boolean isRandomDirty() {
         return randomDirty;
-    }
-
-    public boolean isShutdownDirty() {
-        return shutdownDirty;
     }
 
     public boolean isRepeatDirty() {
