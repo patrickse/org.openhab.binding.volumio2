@@ -135,6 +135,10 @@ public class Volumio2Service {
         socket.emit(Volumio2Commands.PAUSE);
     }
 
+    public void stop() {
+        socket.emit(Volumio2Commands.STOP);
+    }
+
     public void play(Integer index) {
         socket.emit(Volumio2Commands.PLAY, index);
     }

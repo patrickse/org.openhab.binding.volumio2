@@ -203,7 +203,7 @@ public class Volumio2Handler extends BaseThingHandler {
                     volumio.play();
                     break;
                 case PAUSE:
-                    volumio.pause();
+                    volumio.stop();
                     break;
             }
 
