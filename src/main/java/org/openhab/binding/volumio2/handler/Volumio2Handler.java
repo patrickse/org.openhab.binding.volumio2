@@ -150,7 +150,12 @@ public class Volumio2Handler extends BaseThingHandler {
                     volumio.getState();
                     break;
                 case CHANNEL_SYSTEMCOMMAND:
-                    sendSystemCommand(command);
+                    if (command instanceof StringType) {
+                        sendSystemCommand(command);
+                        updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+                    } else if (RefreshType.REFRESH == command) {
+                        updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+                    }
                     break;
                 default:
                     log.error("Unknown channel: {}", channelUID.getId());
