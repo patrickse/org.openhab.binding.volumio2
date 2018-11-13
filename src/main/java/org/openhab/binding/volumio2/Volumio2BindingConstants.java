@@ -35,6 +35,8 @@ public class Volumio2BindingConstants {
     public final static String CHANNEL_CLEAR_QUEUE = "clearQueue";
     public final static String CHANNEL_PLAY_RANDOM = "random";
     public final static String CHANNEL_PLAY_REPEAT = "repeat";
+    public final static String CHANNEL_PLAY_URI = "playURI";
+    public final static String CHANNEL_PLAY_FILE = "playFile";
 
     // Discovery Properties
 
@@ -45,4 +47,8 @@ public class Volumio2BindingConstants {
     // Config
 
     public final static String CONFIG_PROPERTY_HOSTNAME = "hostname";
+    public final static String CONFIG_PROPERTY_PORT = "port";
+    public final static String CONFIG_PROPERTY_PROTOCOL = "protocol";
+    public final static String CONFIG_PROPERTY_TIMEOUT = "timeout";
+
 }

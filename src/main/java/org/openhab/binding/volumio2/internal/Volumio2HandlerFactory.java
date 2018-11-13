@@ -10,7 +10,6 @@ package org.openhab.binding.volumio2.internal;
 import static org.openhab.binding.volumio2.Volumio2BindingConstants.THING_TYPE_VOLUMIO2;
 
 import java.util.Collections;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -62,11 +61,11 @@ public class Volumio2HandlerFactory extends BaseThingHandlerFactory {
             Volumio2Handler handler = new Volumio2Handler(thing);
 
             if (callbackUrl != null) {
-                Volumio2AudioSink audioSink = new Volumio2AudioSink(handler, audioHTTPServer, callbackUrl);
-                @SuppressWarnings("unchecked")
-                ServiceRegistration<AudioSink> reg = (ServiceRegistration<AudioSink>) bundleContext
-                        .registerService(AudioSink.class.getName(), audioSink, new Hashtable<String, Object>());
-                audioSinkRegistrations.put(thing.getUID().toString(), reg);
+                // Volumio2AudioSink audioSink = new Volumio2AudioSink(handler, audioHTTPServer, callbackUrl);
+                // @SuppressWarnings("unchecked")
+                // ServiceRegistration<AudioSink> reg = (ServiceRegistration<AudioSink>) bundleContext
+                // .registerService(AudioSink.class.getName(), audioSink, new Hashtable<String, Object>());
+                // audioSinkRegistrations.put(thing.getUID().toString(), reg);
             }
 
             return handler;

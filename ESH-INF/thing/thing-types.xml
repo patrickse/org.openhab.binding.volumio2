@@ -20,6 +20,8 @@
             <channel id="playRadioStream" typeId="playRadioStream"/>
             <channel id="playPlaylist" typeId="playPlaylist"/>
             <channel id="clearQueue" typeId="clearQueue"/>
+            <channel id="playURI" typeId="playURI"/>
+            <channel id="playFile" typeId="playFile"/>
             <channel id="random" typeId="playRandom"/>
             <channel id="repeat" typeId="playRepeat"/>
         </channels>
@@ -28,6 +30,26 @@
             <parameter name="hostname" type="text" required="true">
                 <label>Hostname</label>
                 <description>The hostname of your volumio2 device</description>
+            </parameter>
+            <parameter name="port" type="integer" required="true">
+                <label>Port</label>
+                <description>The port of your volumio2 device (default is 3000)</description>
+                <default>3000</default>
+            </parameter>
+            <parameter name="protocol" type="text" required="true">
+                <label>Protocol</label>
+                <description>The protocol of your volumio2 device (default is http)</description>
+                <limitToOptions>true</limitToOptions>
+                <options>
+                    <option value="http">http</option>
+                    <option value="https">https</option>
+                </options>
+            </parameter>
+            <parameter name="timeout" type="integer" required="true">
+                <label>Timeout</label>
+                <description>Connection-Timeout in ms</description>
+                <default>5000</default>
+                <advanced>true</advanced>
             </parameter>
         </config-description>
         
@@ -113,5 +135,16 @@
         <description>Activate repeat mode</description>
     </channel-type>
 
+    <channel-type id="playURI" advanced="true">
+        <item-type>String</item-type>
+        <label>Play URI</label>
+        <description>Play the stream at given uri</description>
+    </channel-type>
+    
+    <channel-type id="playFile" advanced="true">
+        <item-type>String</item-type>
+        <label>Play file</label>
+        <description>Play a file, located on your Volumio2 device at the given absolute path, e.g. "mnt/INTERNAL/song.mp3"</description>
+    </channel-type>
 
 </thing:thing-descriptions>
