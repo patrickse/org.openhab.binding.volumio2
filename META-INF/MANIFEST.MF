@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: volumio2 Binding
 Bundle-SymbolicName: org.openhab.binding.volumio2;singleton:=true
 Bundle-Vendor: openHAB
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.4.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,lib/socket.io-client-0.8.1.jar,lib/engine.io-client-0.8.1.jar,lib/json-20090211.jar,lib/okhttp-3.4.1.jar,lib/okhttp-ws-3.4.1.jar,lib/okio-1.9.0.jar
 Export-Package: org.openhab.binding.volumio2,
@@ -12,6 +12,7 @@ Import-Package:
  javax.jmdns,
  org.apache.commons.io,
  org.apache.commons.lang,
+ org.eclipse.jdt.annotation;resolution:=optional,
  org.eclipse.smarthome.config.core,
  org.eclipse.smarthome.config.discovery,
  org.eclipse.smarthome.config.discovery.inbox,
@@ -24,6 +25,7 @@ Import-Package:
  org.eclipse.smarthome.core.thing.binding.builder,
  org.eclipse.smarthome.core.thing.type,
  org.eclipse.smarthome.core.types,
+ org.eclipse.smarthome.core.util,
  org.eclipse.smarthome.io.transport.mdns,
  org.eclipse.smarthome.io.transport.mdns.discovery,
  org.openhab.binding.volumio2,
