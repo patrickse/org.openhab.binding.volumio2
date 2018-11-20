@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) 2010-2018 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+
 package org.openhab.binding.volumio2.internal.discovery;
 
 import static org.openhab.binding.volumio2.Volumio2BindingConstants.*;
@@ -16,29 +25,23 @@ import org.eclipse.smarthome.io.transport.mdns.discovery.MDNSDiscoveryParticipan
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Patrick Sernetz - Initial Contribution
+ */
 public class Volumio2DiscoveryParticipant implements MDNSDiscoveryParticipant {
 
     private static final Logger log = LoggerFactory.getLogger(Volumio2DiscoveryParticipant.class);
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Set<ThingTypeUID> getSupportedThingTypeUIDs() {
         return Collections.singleton(THING_TYPE_VOLUMIO2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getServiceType() {
         return DISCOVERY_SERVICE_TYPE;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public DiscoveryResult createResult(ServiceInfo service) {
 
@@ -68,9 +71,6 @@ public class Volumio2DiscoveryParticipant implements MDNSDiscoveryParticipant {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public ThingUID getThingUID(ServiceInfo service) {
         Collections.list(service.getPropertyNames()).forEach(s -> log.debug("PropertyName: {}", s));

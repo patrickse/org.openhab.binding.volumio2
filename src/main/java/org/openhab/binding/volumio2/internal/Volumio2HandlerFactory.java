@@ -1,10 +1,12 @@
 /**
- * Copyright (c) 2014 openHAB UG (haftungsbeschraenkt) and others.
+ * Copyright (c) 2010-2018 by the respective copyright holders.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
+
 package org.openhab.binding.volumio2.internal;
 
 import static org.openhab.binding.volumio2.Volumio2BindingConstants.THING_TYPE_VOLUMIO2;
@@ -31,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * The {@link Volumio2HandlerFactory} is responsible for creating things and thing
  * handlers.
  *
- * @author Patrick Sernetz - Initial contribution
+ * @author Patrick Sernetz - Initial Contribution
  */
 public class Volumio2HandlerFactory extends BaseThingHandlerFactory {
 

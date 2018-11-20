@@ -31,7 +31,7 @@ The binding has the following configuration options, which can be set for "bindi
 
 The Volumio2 Player Thing requires the hostname (or ip adress) as a configuration value in order for the binding to know how to access it.
 
-```
+```java
 Thing volumio2:player:livingRoom "Volumio@WLivingRoom"  [ hostname="192.168.64.5" ]
 Thing volumio2:player:kitchen    "Volumio@Kitchen"      [ hostname="192.168.64.6" ]
 ```
@@ -55,13 +55,10 @@ The devices support the following channels:
 | repeat          | Switch                 |              |                  |              |   |
 
 
-
 ## Audio Support
 
 Audio Support is still experimental in this binding.
 
 ## Full Example
 
-```
-
-```
+No example atm
