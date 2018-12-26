@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) 2010-2018 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+
 package org.openhab.binding.volumio2.internal;
 
 import java.net.InetAddress;
@@ -16,6 +25,9 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+/**
+ * @author Patrick Sernetz - Initial Contribution
+ */
 public class Volumio2Service {
 
     private static final Logger log = LoggerFactory.getLogger(Volumio2Service.class);
@@ -172,7 +184,7 @@ public class Volumio2Service {
             socket.emit(Volumio2Commands.PLAY_PLAYLIST, item);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
@@ -188,7 +200,7 @@ public class Volumio2Service {
 
             socket.emit(Volumio2Commands.RANDOM, item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
@@ -200,7 +212,7 @@ public class Volumio2Service {
 
             socket.emit(Volumio2Commands.REPEAT, item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
     }
@@ -213,7 +225,7 @@ public class Volumio2Service {
 
             socket.emit(Volumio2Commands.PLAY_FAVOURITES, item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
@@ -247,7 +259,7 @@ public class Volumio2Service {
 
             socket.emit(Volumio2Commands.PLAY, uri);
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
@@ -262,7 +274,7 @@ public class Volumio2Service {
             socket.emit(Volumio2Commands.ADD_PLAY, item);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
     }
@@ -278,7 +290,7 @@ public class Volumio2Service {
             socket.emit(Volumio2Commands.REPLACE_AND_PLAY, item);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
