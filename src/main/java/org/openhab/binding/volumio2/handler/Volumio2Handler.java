@@ -19,6 +19,7 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.library.types.PlayPauseType;
 import org.eclipse.smarthome.core.library.types.RewindFastforwardType;
+import org.eclipse.smarthome.core.library.types.StopMoveType;
 import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.Channel;
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -210,10 +211,22 @@ public class Volumio2Handler extends BaseThingHandler {
                     volumio.play();
                     break;
                 case PAUSE:
-                    volumio.stop();
+                    volumio.pause();
                     break;
             }
+        } else if (command instanceof StopMoveType) {
 
+            if (command instanceof StopMoveType) {
+                StopMoveType stopMoveType = (StopMoveType) command;
+
+                switch (stopMoveType) {
+                    case STOP:
+                        volumio.stop();
+                        break;
+                    default:
+                        break;
+                }
+            }
         } else if (command instanceof NextPreviousType) {
 
             NextPreviousType nextPreviousType = (NextPreviousType) command;
