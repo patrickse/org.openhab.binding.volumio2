@@ -19,7 +19,6 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.library.types.PlayPauseType;
 import org.eclipse.smarthome.core.library.types.RewindFastforwardType;
-import org.eclipse.smarthome.core.library.types.StopMoveType;
 import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.Channel;
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -160,6 +159,14 @@ public class Volumio2Handler extends BaseThingHandler {
                         updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
                     }
                     break;
+                case CHANNEL_STOP:
+                    if (command instanceof StringType) {
+                        handleStopCommand(command);
+                        updateState(CHANNEL_STOP, UnDefType.UNDEF);
+                    } else if (RefreshType.REFRESH == command) {
+                        updateState(CHANNEL_STOP, UnDefType.UNDEF);
+                    }
+                    break;
                 default:
                     log.error("Unknown channel: {}", channelUID.getId());
             }
@@ -200,8 +207,16 @@ public class Volumio2Handler extends BaseThingHandler {
 
     }
 
-    private void handlePlaybackCommands(Command command) {
+    private void handleStopCommand(Command command) {
+        if (command instanceof StringType) {
+            volumio.stop();
+            updateState(CHANNEL_STOP, UnDefType.UNDEF);
+        } else if (command.equals(RefreshType.REFRESH)) {
+            updateState(CHANNEL_STOP, UnDefType.UNDEF);
+        }
+    }
 
+    private void handlePlaybackCommands(Command command) {
         if (command instanceof PlayPauseType) {
 
             PlayPauseType playPauseCmd = (PlayPauseType) command;
@@ -213,19 +228,6 @@ public class Volumio2Handler extends BaseThingHandler {
                 case PAUSE:
                     volumio.pause();
                     break;
-            }
-        } else if (command instanceof StopMoveType) {
-
-            if (command instanceof StopMoveType) {
-                StopMoveType stopMoveType = (StopMoveType) command;
-
-                switch (stopMoveType) {
-                    case STOP:
-                        volumio.stop();
-                        break;
-                    default:
-                        break;
-                }
             }
         } else if (command instanceof NextPreviousType) {
 
