@@ -151,6 +151,22 @@ public class Volumio2Handler extends BaseThingHandler {
                     log.debug("Called Refresh");
                     volumio.getState();
                     break;
+                case CHANNEL_SYSTEMCOMMAND:
+                    if (command instanceof StringType) {
+                        sendSystemCommand(command);
+                        updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+                    } else if (RefreshType.REFRESH == command) {
+                        updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+                    }
+                    break;
+                case CHANNEL_STOP:
+                    if (command instanceof StringType) {
+                        handleStopCommand(command);
+                        updateState(CHANNEL_STOP, UnDefType.UNDEF);
+                    } else if (RefreshType.REFRESH == command) {
+                        updateState(CHANNEL_STOP, UnDefType.UNDEF);
+                    }
+                    break;
                 default:
                     log.error("Unknown channel: {}", channelUID.getId());
             }
@@ -159,6 +175,15 @@ public class Volumio2Handler extends BaseThingHandler {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, e.getMessage());
         }
 
+    }
+
+    private void sendSystemCommand(Command command) {
+        if (command instanceof StringType) {
+            volumio.sendSystemCommand(command.toString());
+            updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+        } else if (command.equals(RefreshType.REFRESH)) {
+            updateState(CHANNEL_SYSTEMCOMMAND, UnDefType.UNDEF);
+        }
     }
 
     /**
@@ -182,8 +207,16 @@ public class Volumio2Handler extends BaseThingHandler {
 
     }
 
-    private void handlePlaybackCommands(Command command) {
+    private void handleStopCommand(Command command) {
+        if (command instanceof StringType) {
+            volumio.stop();
+            updateState(CHANNEL_STOP, UnDefType.UNDEF);
+        } else if (command.equals(RefreshType.REFRESH)) {
+            updateState(CHANNEL_STOP, UnDefType.UNDEF);
+        }
+    }
 
+    private void handlePlaybackCommands(Command command) {
         if (command instanceof PlayPauseType) {
 
             PlayPauseType playPauseCmd = (PlayPauseType) command;
@@ -196,7 +229,6 @@ public class Volumio2Handler extends BaseThingHandler {
                     volumio.pause();
                     break;
             }
-
         } else if (command instanceof NextPreviousType) {
 
             NextPreviousType nextPreviousType = (NextPreviousType) command;
@@ -289,9 +321,7 @@ public class Volumio2Handler extends BaseThingHandler {
     @Override
     public void dispose() {
         if (volumio != null) {
-
             scheduler.schedule(new Runnable() {
-
                 @Override
                 public void run() {
                     if (volumio.isConnected()) {

@@ -39,6 +39,8 @@ public class Volumio2BindingConstants {
     public final static String CHANNEL_PLAY_REPEAT = "repeat";
     public final static String CHANNEL_PLAY_URI = "playURI";
     public final static String CHANNEL_PLAY_FILE = "playFile";
+    public final static String CHANNEL_SYSTEMCOMMAND = "systemCommand";
+    public final static String CHANNEL_STOP = "stopCommand";
 
     // Discovery Properties
 

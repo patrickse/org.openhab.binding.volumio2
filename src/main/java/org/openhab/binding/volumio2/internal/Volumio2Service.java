@@ -147,6 +147,10 @@ public class Volumio2Service {
         socket.emit(Volumio2Commands.PAUSE);
     }
 
+    public void stop() {
+        socket.emit(Volumio2Commands.STOP);
+    }
+
     public void play(Integer index) {
         socket.emit(Volumio2Commands.PLAY, index);
     }
@@ -296,6 +300,21 @@ public class Volumio2Service {
 
     public void setConnected(boolean status) {
         this.connected = status;
+    }
+
+    public void sendSystemCommand(String string) {
+        log.warn("Jukebox Command: " + string);
+        switch (string) {
+            case Volumio2Commands.SHUTDOWN:
+                shutdown();
+                break;
+            case Volumio2Commands.REBOOT:
+                reboot();
+                break;
+            default:
+                break;
+        }
+
     }
 
 }
